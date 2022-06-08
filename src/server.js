@@ -1,27 +1,32 @@
 const { config } = require('dotenv');
 const express = require('express');
 const mongoose = require('mongoose');
+const { configSocketIo } = require('./messages/messages-channel');
+const cors = require('cors');
+const logger = require('morgan');
+const candleRoutes = require('./candles/candle-routes');
 
-const createServer = () => {
+const createServer = async () => {
+  config()
+  await mongoose.connect(process.env.DATABASE)
   const app = express();
+  const server = app.listen(process.env.PORT);
   configurateServer(app);
-  return app;
 }
 
 const configurateServer = (app) => {
+  app.use(cors());
   app.use(express.json());
+  app.use(logger('dev'));
+  configSocketIo(app);
+  configurateRoutes(app);
 }
 
-const initServer = async (app, port = 3000) => {
-  config();
-  app.listen(port);
-  console.log(`Running! Port: ${port}`);
-  await mongoose.connect(process.env.DATABASE)
-  console.log('Connected to database')
-}
+const configurateRoutes = (app) => {
+  candleRoutes(app);
+};
 
 module.exports = {
   createServer,
-  configurateServer,
-  initServer
+  configurateServer
 }

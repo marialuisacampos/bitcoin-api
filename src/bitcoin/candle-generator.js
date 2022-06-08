@@ -1,13 +1,13 @@
-const { readMarketPrice } = require('./candle-price');
-const { createMessageChanel, sendMenssageToQueue } = require('../messages/messagesChannel');
-const { Candle } = require('./candle');
+const { readMarketPrice } = require('./candle-get-price');
+const { createMessageChanel, sendMenssageToQueue } = require('../messages/messages-channel');
+const { Candle } = require('./candle-class');
 
 
 const generateCandles = async () => {
   const rabbitChannel = await createMessageChanel()
 
   if (rabbitChannel) {
-    const loopTimes = 60000 / 10000 //nova candle a cada 5min, com leitura a cada 30segundos
+    const loopTimes = 300000 / 30000 //nova candle a cada 5min, com leitura a cada 30segundos
   const candle = new Candle('BTC')
 
   console.log('-----------------------------------')
