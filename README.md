@@ -1,1 +1,1 @@
-# bitcoin-platform
+# Bitcoin API
