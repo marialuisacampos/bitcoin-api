@@ -1,0 +1,7 @@
+{
+  "apps": [{
+    "name": "bitcoin-api",
+    "script": "node",
+    "args": "src/index.js"
+  }]
+}

@@ -12,8 +12,8 @@
     "url": "git+https://github.com/marialuisacampos/bitcoin-platform.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Maria Luísa Campos",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/marialuisacampos/bitcoin-platform/issues"
   },
